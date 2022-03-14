@@ -32,6 +32,8 @@ jobs:
           java-version: '11.x'
       - name: Install node.js packages
         run: npm install
+      - name: Npm install
+        run: npm run ci:frontend:test
 
 
       # Runs a single command using the runners shell
