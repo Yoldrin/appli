@@ -41,7 +41,7 @@ jobs:
       - name: Setup Test
         run: npm run backend:unit:test
       - name: Test Backend
-        run: npm run backend:unit:test:win
+        run: npm run backend:unit:test
       - name: Test Intefration
         run: ./mvnw -ntp verify -DskipTests --batch-mode "-Pprod" "-Pe2e" "-Denforcer.skip=true"
       - name: Prepare Docker
