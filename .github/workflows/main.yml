@@ -32,27 +32,25 @@ jobs:
           java-version: '11.x'
       - name: Install node.js packages
         run: npm install
-      - name: Npm install
+      - name: Test Front
         run: npm run ci:frontend:test
-      - name : test unitaire
-        run: npm run ci:frontend:test
-      - name : Test unitaire back
+      - name: Test
+        run: npm run test
+      - name: Add CHMOD
         run: chmod +x mvnw && npm run ci:backend:test
-      - name : Prépare le jar
-        run: ./mvnw -ntp verify -DskipTests --batch-mode "-Pprod" "-Pe2e""-Denforcer.skip=true"
-      - name : BDD Docker
+      - name: Setup Test
+        run: npm run backend:unit:test
+      - name: Test Backend
+        run: npm run backend:unit:test:win
+      - name: Test Intefration
+        run: ./mvnw -ntp verify -DskipTests --batch-mode "-Pprod" "-Pe2e" "-Denforcer.skip=true"
+      - name: Prepare Docker
         run: npm run ci:e2e:prepare:docker
-      - name : Lancement des test
+      - name: e2e
         run: npm run ci:e2e:run
-      - name : Netoyage Docker
+      - name: End Docker
         run: npm run ci:e2e:teardown
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: mvnw
+        run: ./mvnw
+      - name: run e2e
+        run: npm run e2e
