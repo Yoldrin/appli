@@ -48,6 +48,4 @@ jobs:
         run: npm run ci:e2e:prepare:docker
       - name: End Docker
         run: npm run ci:e2e:teardown
-      - name: mvnw
-        run: ./mvnw
-
+ 
